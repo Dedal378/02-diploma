@@ -12,15 +12,24 @@
 
     <div class="form-control">
       <label for="value">Значение</label>
-      <textarea v-model="value" id="value" rows="3"></textarea>
+      <textarea
+          v-model="value"
+          id="value"
+          rows="3">
+      </textarea>
     </div>
 
-    <button class="btn primary" :disabled="isValidate()">Добавить</button>
+    <button
+        class="btn primary"
+        :disabled="isValidate"
+        @click="submit"
+    >
+      Добавить
+    </button>
   </form>
 </template>
 
 <script>
-/* eslint-disable no-empty */
 export default {
   name: "AppForm",
   data() {
@@ -30,12 +39,24 @@ export default {
     }
   },
   methods: {
+    submit() {
+      this.$emit('userData', {
+        id: this.id,
+        value: this.value,
+        appType: this.appType,
+      })
+    }
+  },
+  computed: {
     isValidate() {
       if (this.value.length > 3) {
         return false
       }
       return true
-    }
+    },
+    id() {
+      return 'component-' + Math.random()
+    },
   },
 }
 </script>

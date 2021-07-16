@@ -2,22 +2,16 @@
   <div class="wrapper" id="app">
     <div class="container column">
 
-      <app-form />
+      <app-form
+          @userData="addData"
+      />
 
-      <div class="card card-w70">
-        <components
-            v-for="component in components"
-            :key="component.id"
-            :is="component.component"
-        >
-          {{ component.value }}
-        </components>
-
-        <h3 v-if="!components.length">Добавьте первый блок, чтобы увидеть результат</h3>
-      </div>
+      <app-user-data-view
+          :components="components"
+      />
     </div>
 
-    <app-loader v-if="loader"></app-loader>
+    <app-loader v-if="loader" />
     <app-comments
         v-else
         @loadComments="loadComments"
@@ -29,56 +23,52 @@
 
 <script>
 import AppForm from "@/components/AppForm"
-import AppLoader from "@/components/AppLoader";
+import AppLoader from "@/components/AppLoader"
+import AppUserDataView from "@/components/AppUserDataView"
 
 export default {
   components: {
-    // eslint-disable-next-line vue/no-unused-components
-    AppForm, AppLoader,
-    'AppTitle': () => import('@/components/AppTitle'),
-    'AppAvatar': () => import('@/components/AppAvatar'),
-    'AppSubtitle': () => import('@/components/AppSubtitle'),
-    'AppText': () => import('@/components/AppText'),
+    AppForm, AppLoader, AppUserDataView,
     'AppComments': () => import('@/components/AppComments'),
   },
   data() {
     return {
       value: '',
       components: [
-        {
-          id: this.id(),
-          component: 'AppTitle',
-          value: 'Резюме',
-        },
-        {
-          id: this.id(),
-          component: 'AppSubtitle',
-          value: 'Опыт работы',
-        },
-        {
-          id: this.id(),
-          component: 'AppAvatar',
-          value: 'https://cdn.dribbble.com/users/5592443/screenshots/14279501/drbl_pop_r_m_rick_4x.png',
-        },
-        {
-          id: this.id(),
-          component: 'AppText',
-          value: 'главный герой американского мультсериала «Рик и Морти», гениальный учёный, изобретатель, атеист (хотя в некоторых сериях он даже молится Богу, однако, каждый раз после чудесного спасения ссылается на удачу и вновь отвергает его существование), алкоголик, социопат, дедушка Морти. На момент начала третьего сезона ему 70 лет[1]. Рик боится пиратов, а его главной слабостью является некий - "Санчезиум". Исходя из того, что существует неограниченное количество вселенных, существует неограниченное количество Риков, герой сериала предположительно принадлежит к измерению С-137. В серии комикcов Рик относится к измерению C-132, а в игре «Pocket Mortys» — к измерению C-123[2]. Прототипом Рика Санчеза является Эмметт Браун, герой кинотрилогии «Назад в будущее»[3].',
-        },
+        // {
+        //   id: this.id(),
+        //   component: 'AppTitle',
+        //   value: 'Резюме',
+        // },
+        // {
+        //   id: this.id(),
+        //   component: 'AppSubtitle',
+        //   value: 'Опыт работы',
+        // },
+        // {
+        //   id: this.id(),
+        //   component: 'AppAvatar',
+        //   value: 'https://cdn.dribbble.com/users/5592443/screenshots/14279501/drbl_pop_r_m_rick_4x.png',
+        // },
+        // {
+        //   id: this.id(),
+        //   component: 'AppText',
+        //   value: 'главный герой американского мультсериала «Рик и Морти», гениальный учёный, изобретатель, атеист (хотя в некоторых сериях он даже молится Богу, однако, каждый раз после чудесного спасения ссылается на удачу и вновь отвергает его существование), алкоголик, социопат, дедушка Морти. На момент начала третьего сезона ему 70 лет[1]. Рик боится пиратов, а его главной слабостью является некий - "Санчезиум". Исходя из того, что существует неограниченное количество вселенных, существует неограниченное количество Риков, герой сериала предположительно принадлежит к измерению С-137. В серии комикcов Рик относится к измерению C-132, а в игре «Pocket Mortys» — к измерению C-123[2]. Прототипом Рика Санчеза является Эмметт Браун, герой кинотрилогии «Назад в будущее»[3].',
+        // },
       ],
       comments: [],
       loader: false,
     }
   },
   methods: {
-    id() {
-      return 'component-' + Math.random()
-    },
     async loadComments() {
       this.loader = true
       const response = await fetch('https://jsonplaceholder.typicode.com/comments?_limit=42')
       this.comments = await response.json()
       this.loader = false
+    },
+    addData(data) {
+      this.components.push(data)
     }
   },
 }
