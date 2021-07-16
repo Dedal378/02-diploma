@@ -1,7 +1,7 @@
 <template>
   <div class="avatar">
     <slot>
-      <img :src="src">
+      <img :src="$attrs.value">
     </slot>
   </div>
 </template>
@@ -14,5 +14,14 @@ export default {
 </script>
 
 <style scoped>
+.avatar {
+  display: flex;
+  justify-content: center;
+}
 
+.avatar img {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+}
 </style>
