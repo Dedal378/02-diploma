@@ -1,6 +1,7 @@
 <template>
   <p>
-    <slot>{{ text }}</slot>
+    {{ $attrs.value }}
+    <!--<slot>{{ text }}</slot>-->
   </p>
 </template>
 

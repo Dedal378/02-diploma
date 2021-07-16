@@ -3,9 +3,9 @@
     <components
         v-for="component in components"
         :key="component.id"
-        :is="component.appType"
+        :is="'app-' + component.appType"
+        :value="component.value"
     >
-      {{ component.value }}
     </components>
 
     <h3 v-if="!components.length">Добавьте первый блок, чтобы увидеть результат</h3>

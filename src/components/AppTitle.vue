@@ -1,6 +1,7 @@
 <template>
   <h1>
-    <slot>{{ title }}</slot>
+    {{ $attrs.value }}
+    <!--<slot>{{ title }}</slot>-->
   </h1>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
   <h2>
-    <slot>{{ subtitle }}</slot>
+    {{ $attrs.value }}
+    <!--<slot>{{ subtitle }}</slot>-->
   </h2>
 </template>
 

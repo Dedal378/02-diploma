@@ -1,8 +1,7 @@
 <template>
   <div class="avatar">
-    <slot>
-      <img :src="$attrs.value">
-    </slot>
+    <img :src="$attrs.value">
+    <!--<slot><img :src="$attrs.value"></slot>-->
   </div>
 </template>
 
@@ -21,7 +20,8 @@ export default {
 
 .avatar img {
   width: 150px;
-  height: auto;
+  height: 150px;
+  object-fit: cover;
   border-radius: 50%;
 }
 </style>
