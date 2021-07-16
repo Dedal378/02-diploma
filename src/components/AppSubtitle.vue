@@ -1,5 +1,9 @@
 <template>
-  <h2>{{ subtitle }}</h2>
+  <h2>
+    <slot>
+      {{ subtitle }}
+    </slot>
+  </h2>
 </template>
 
 <script>
