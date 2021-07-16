@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitForm" class="card card-w30">
+  <form @submit.prevent="submit" class="card card-w30">
     <div class="form-control">
       <label for="type">Тип блока</label>
       <select v-model="appType" id="type">
@@ -22,7 +22,6 @@
     <button
         class="btn primary"
         :disabled="isValidate"
-        @click="submit"
     >
       Добавить
     </button>
@@ -39,12 +38,18 @@ export default {
     }
   },
   methods: {
+    id() {
+      return 'component-' + Math.random()
+    },
     submit() {
       this.$emit('userData', {
-        id: this.id,
+        id: this.id(),
         value: this.value,
         appType: this.appType,
       })
+
+      this.appType = 'AppTitle'
+      this.value = ''
     }
   },
   computed: {
@@ -53,10 +58,7 @@ export default {
         return false
       }
       return true
-    },
-    id() {
-      return 'component-' + Math.random()
-    },
+    }
   },
 }
 </script>
