@@ -17,10 +17,11 @@
       </div>
     </div>
 
+    <app-loader
+    ></app-loader>
     <app-comments
         @loadComments="loadComments"
-        email="test@microsoft.com"
-        comment="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, reiciendis."
+        :comments="comments"
     />
 
   </div>
@@ -28,11 +29,12 @@
 
 <script>
 import AppForm from "@/components/AppForm"
+import AppLoader from "@/components/AppLoader";
 
 export default {
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    AppForm,
+    AppForm, AppLoader,
     'AppTitle': () => import('@/components/AppTitle'),
     'AppAvatar': () => import('@/components/AppAvatar'),
     'AppSubtitle': () => import('@/components/AppSubtitle'),
@@ -65,6 +67,7 @@ export default {
         },
       ],
       comments: [],
+      loader: false,
     }
   },
   methods: {
@@ -72,10 +75,10 @@ export default {
       return 'component-' + Math.random()
     },
     async loadComments() {
+      this.loader === true
       const response = await fetch('https://jsonplaceholder.typicode.com/comments?_limit=42')
-      const data = await response.json()
-      this.comments = data
-      console.log('loadComments', data)
+      this.comments = await response.json()
+      this.loader === false
     }
   },
 }
