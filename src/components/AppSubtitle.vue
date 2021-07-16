@@ -1,8 +1,6 @@
 <template>
   <h2>
-    <slot>
-      {{ subtitle }}
-    </slot>
+    <slot>{{ subtitle }}</slot>
   </h2>
 </template>
 

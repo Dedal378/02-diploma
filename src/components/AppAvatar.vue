@@ -1,7 +1,7 @@
 <template>
   <div class="avatar">
     <slot>
-      <!--<img :src="$attrs.value">-->
+      <img :src="$attrs.value">
     </slot>
   </div>
 </template>

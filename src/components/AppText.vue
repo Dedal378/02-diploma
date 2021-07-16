@@ -1,8 +1,6 @@
 <template>
   <p>
-    <slot>
-      {{ text }}
-    </slot>
+    <slot>{{ text }}</slot>
   </p>
 </template>
 
