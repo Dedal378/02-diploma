@@ -1,14 +1,8 @@
 <template>
   <div class="wrapper" id="app">
     <div class="container column">
-
-      <app-form
-          @userData="addData"
-      />
-
-      <app-user-data-view
-          :components="components"
-      />
+      <app-form @userData="addData" />
+      <app-user-data-view :components="components" />
     </div>
 
     <app-loader v-if="loader" />
@@ -17,7 +11,6 @@
         @loadComments="loadComments"
         :comments="comments"
     />
-
   </div>
 </template>
 

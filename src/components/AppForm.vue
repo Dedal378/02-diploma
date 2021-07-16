@@ -12,17 +12,11 @@
 
     <div class="form-control">
       <label for="value">Значение</label>
-      <textarea
-          v-model="value"
-          id="value"
-          rows="3">
+      <textarea v-model="value" id="value" rows="3">
       </textarea>
     </div>
 
-    <button
-        class="btn primary"
-        :disabled="isValidate"
-    >
+    <button class="btn primary" :disabled="isValidate">
       Добавить
     </button>
   </form>
