@@ -25,6 +25,7 @@
 <script>
 export default {
   name: "AppForm",
+  emits: ['userData'],
   data() {
     return {
       appType: 'AppTitle',

@@ -5,12 +5,14 @@
       <app-user-data-view :components="components" />
     </div>
 
-    <app-loader v-if="loader" />
-    <app-comments
-        v-else
-        @loadComments="loadComments"
-        :comments="comments"
-    />
+    <div class="container">
+      <app-loader v-if="loader" />
+      <app-comments
+          v-else
+          @loadComments="loadComments"
+          :comments="comments"
+      />
+    </div>
   </div>
 </template>
 
