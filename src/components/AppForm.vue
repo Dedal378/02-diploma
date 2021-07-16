@@ -15,16 +15,26 @@
       <textarea v-model="value" id="value" rows="3"></textarea>
     </div>
 
-    <button class="btn primary">Добавить</button>
+    <button class="btn primary" :disabled="isValidate()">Добавить</button>
   </form>
 </template>
 
 <script>
+/* eslint-disable no-empty */
 export default {
   name: "AppForm",
   data() {
     return {
       appType: 'AppTitle',
+      value: '',
+    }
+  },
+  methods: {
+    isValidate() {
+      if (this.value.length > 3) {
+        return false
+      }
+      return true
     }
   },
 }
