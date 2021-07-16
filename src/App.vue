@@ -17,9 +17,9 @@
       </div>
     </div>
 
-    <app-loader
-    ></app-loader>
+    <app-loader v-if="loader"></app-loader>
     <app-comments
+        v-else
         @loadComments="loadComments"
         :comments="comments"
     />
