@@ -75,10 +75,10 @@ export default {
       return 'component-' + Math.random()
     },
     async loadComments() {
-      this.loader === true
+      this.loader = true
       const response = await fetch('https://jsonplaceholder.typicode.com/comments?_limit=42')
       this.comments = await response.json()
-      this.loader === false
+      this.loader = false
     }
   },
 }
