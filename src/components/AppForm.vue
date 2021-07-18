@@ -57,10 +57,7 @@ export default {
   },
   computed: {
     isValidate() {
-      if (this.value.length > 3) {
-        return false
-      }
-      return true
+      return this.value.length <= 3;
     }
   },
 }
