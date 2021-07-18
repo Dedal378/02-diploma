@@ -57,7 +57,6 @@ export default {
     },
     async addResumeData(userData) {
       await axios.post(`${ this.firebaseDatabaseLink }resume/${ this.localStorageId }.json`, userData)
-      this.setLocalStorage()
       this.userData.push(userData)
     },
     getLocalStorage() {
