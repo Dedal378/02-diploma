@@ -64,8 +64,7 @@ export default {
     },
     setLocalStorage() {
       this.getLocalStorage()
-      if (this.localStorageId === '') {
-        console.log('set')
+      if (!this.localStorageId) {
         this.localStorageId = this.setId()
         localStorage.setItem('resume', this.localStorageId)
       }
