@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     id() {
-      return 'component-' + (Math.random() * 100)
+      return 'component-' + new Date().getTime()
     },
     submit() {
       this.$emit('user-data', {

@@ -33,7 +33,7 @@ export default {
       userData: [],
       comments: [],
       loader: false,
-      firebaseDatabase: 'https://vue-02-diploma-default-rtdb.europe-west1.firebasedatabase.app/',
+      firebaseDatabaseLink: 'https://vue-02-diploma-default-rtdb.europe-west1.firebasedatabase.app/',
       localStorageId: {},
     }
   },
@@ -44,12 +44,19 @@ export default {
       this.comments = await response.json()
       this.loader = false
     },
-    async loadResumeData(){
-      const { data } = await axios.get(`${ this.firebaseDatabase }resume.json`)
-
+    async loadResumeData() {
+      const { data } = await axios.get(`${ this.firebaseDatabaseLink }resume.json`)
+      if (data) {
+        this.userData = Object.keys(data).map(key => {
+          return {
+            id: key,
+            ...data[key]
+          }
+        })
+      }
     },
     async addResumeData(userData) {
-      const { data } = await axios.post(`${ this.firebaseDatabase }resume.json`, userData)
+      const { data } = await axios.post(`${ this.firebaseDatabaseLink }resume.json`, userData)
       this.localStorageId = data
       // this.setLocalStorage()
       this.userData.push(userData)
@@ -68,6 +75,9 @@ export default {
       return new Date().getTime()
     }
   },
+  mounted() {
+    this.loadResumeData()
+  }
 }
 </script>
 
