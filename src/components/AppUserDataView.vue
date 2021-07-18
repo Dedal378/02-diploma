@@ -23,7 +23,10 @@ export default {
     'AppText': () => import('@/components/AppText'),
   },
   props: {
-    components: Array
+    components: {
+      type: Array,
+      required: true
+    }
   },
 }
 </script>

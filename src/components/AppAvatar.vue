@@ -1,14 +1,12 @@
 <template>
   <div class="avatar">
     <img :src="$attrs.value">
-    <!--<slot><img :src="$attrs.value"></slot>-->
   </div>
 </template>
 
 <script>
 export default {
   name: "AppAvatar",
-  props: { src: String },
 }
 </script>
 

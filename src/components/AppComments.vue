@@ -24,8 +24,13 @@
 <script>
 export default {
   name: "AppComments",
-  emits: ['loadComments'],
-  props: { comments: Array },
+  emits: ['load-comments'],
+  props: {
+    comments: {
+      type:Array,
+      required: true
+    }
+  },
   methods: {
     loadComments() {
       this.$emit('loadComments')

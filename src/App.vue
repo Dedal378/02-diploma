@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" id="app">
     <div class="container column">
-      <app-form @userData="addData" />
+      <app-form @user-data="addData" />
       <app-user-data-view :components="components" />
     </div>
 
@@ -9,7 +9,7 @@
       <app-loader v-if="loader" />
       <app-comments
           v-else
-          @loadComments="loadComments"
+          @load-comments="loadComments"
           :comments="comments"
       />
     </div>
