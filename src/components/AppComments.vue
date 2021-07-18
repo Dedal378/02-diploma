@@ -24,7 +24,13 @@
 <script>
 export default {
   name: "AppComments",
-  emits: ['load-comments'],
+  emits: {
+    // TODO придумать валидацию на комменты
+    'load-comments'() {
+      console.log('valid')
+      return true
+    }
+  },
   props: {
     comments: {
       type:Array,
@@ -33,7 +39,7 @@ export default {
   },
   methods: {
     loadComments() {
-      this.$emit('loadComments')
+      this.$emit('load-comments')
     }
   },
 }

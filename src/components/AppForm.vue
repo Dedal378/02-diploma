@@ -12,23 +12,32 @@
 
     <div class="form-control">
       <label for="value">Значение</label>
-      <textarea v-model="value" id="value" rows="3"></textarea>
+      <textarea id="value" rows="3" v-model.trim="value"></textarea>
     </div>
 
     <button :disabled="isValidate" class="btn primary">
       Добавить
     </button>
+    <!--{{ payload }}-->
   </form>
 </template>
 
 <script>
 export default {
   name: "AppForm",
-  emits: ['user-data'],
+  emits: {
+    // TODO придумать валидацию на форму, не выводится consoe.log, оно вообще работает?
+    'user-data'(payload) {
+      this.payload = payload
+      console.log('valid', payload)
+      return true
+    }
+  },
   data() {
     return {
       appType: 'title',
       value: '',
+      payload: []
     }
   },
   methods: {
@@ -36,7 +45,7 @@ export default {
       return 'component-' + Math.random()
     },
     submit() {
-      this.$emit('userData', {
+      this.$emit('user-data', {
         id: this.id(),
         value: this.value,
         appType: this.appType,
