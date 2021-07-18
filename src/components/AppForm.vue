@@ -42,13 +42,13 @@ export default {
   },
   methods: {
     id() {
-      return 'component-' + Math.random()
+      return 'component-' + (Math.random() * 100)
     },
     submit() {
       this.$emit('user-data', {
         id: this.id(),
-        value: this.value,
         appType: this.appType,
+        value: this.value,
       })
 
       this.appType = 'title'
