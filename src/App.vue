@@ -34,7 +34,7 @@ export default {
       comments: [],
       loader: false,
       firebaseDatabaseLink: 'https://vue-02-diploma-default-rtdb.europe-west1.firebasedatabase.app/',
-      localStorageId: '',
+      userId: '',
     }
   },
   methods: {
@@ -45,7 +45,7 @@ export default {
       this.loader = false
     },
     async loadResumeData() {
-      const { data } = await axios.get(`${ this.firebaseDatabaseLink }resume/${ this.localStorageId }.json`)
+      const { data } = await axios.get(`${ this.firebaseDatabaseLink }resume/${ this.userId }.json`)
       if (data) {
         this.userData = Object.keys(data).map(key => {
           return {
@@ -56,17 +56,17 @@ export default {
       }
     },
     async addResumeData(userData) {
-      await axios.post(`${ this.firebaseDatabaseLink }resume/${ this.localStorageId }.json`, userData)
+      await axios.post(`${ this.firebaseDatabaseLink }resume/${ this.userId }.json`, userData)
       this.userData.push(userData)
     },
     getLocalStorage() {
-      this.localStorageId = JSON.parse(localStorage.getItem('resume'))
+      this.userId = JSON.parse(localStorage.getItem('resume'))
     },
     setLocalStorage() {
       this.getLocalStorage()
-      if (!this.localStorageId) {
-        this.localStorageId = this.setId()
-        localStorage.setItem('resume', this.localStorageId)
+      if (!this.userId) {
+        this.userId = this.setId()
+        localStorage.setItem('resume', this.userId)
       }
     },
     setId() {
